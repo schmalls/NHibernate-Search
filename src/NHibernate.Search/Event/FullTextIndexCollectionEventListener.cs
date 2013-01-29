@@ -1,7 +1,7 @@
 namespace NHibernate.Search.Event
 {
+    using System;
     using Backend;
-
     using NHibernate.Engine;
     using NHibernate.Event;
 
@@ -9,6 +9,7 @@ namespace NHibernate.Search.Event
     /// Support collection event listening
     /// </summary>
     /// HACK: Deprecate as soon as we target Core 3.3 and merge back into the superclass
+    [Serializable]
     public class FullTextIndexCollectionEventListener : FullTextIndexEventListener, 
                                     IPostCollectionRecreateEventListener, IPostCollectionRemoveEventListener, IPostCollectionUpdateEventListener
     {

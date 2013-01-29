@@ -7,12 +7,15 @@ using NHibernate.Search.Impl;
 
 namespace NHibernate.Search.Event
 {
+    [Serializable]
     public class FullTextIndexEventListener : IPostDeleteEventListener, IPostInsertEventListener,
                                               IPostUpdateEventListener,
                                               IInitializable,
                                               IDestructible
     {
         protected bool used;
+
+        [NonSerialized]
         protected ISearchFactoryImplementor searchFactory;
 
         #region Property methods
