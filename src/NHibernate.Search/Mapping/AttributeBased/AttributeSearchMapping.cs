@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 
 using NHibernate.Cfg;
@@ -18,7 +17,7 @@ namespace NHibernate.Search.Mapping.AttributeBased
 
             foreach (var mapping in cfg.ClassMappings)
             {
-                if (!this.IsIndexed(mapping.MappedClass))
+                if (mapping.MappedClass == null || !this.IsIndexed(mapping.MappedClass))
                     continue;
 
                 indexedClasses.Add(builder.Build(mapping.MappedClass));

@@ -62,7 +62,7 @@ namespace NHibernate.Search.Cfg
 
             foreach (KeyValuePair<string, string> pair in configuration.Properties)
             {
-                cfg.Properties.Add(pair.Key, pair.Value);
+                cfg.Properties[pair.Key] = pair.Value;
             }
         }
 

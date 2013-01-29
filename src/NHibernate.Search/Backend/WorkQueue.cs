@@ -52,8 +52,6 @@ namespace NHibernate.Search.Backend
 
         public void SetSealedQueue(List<LuceneWork> sealedQueue)
         {
-            //invalidate the working queue for serializability
-            queue = null;
             this.sealedQueue = sealedQueue;
         }
 
