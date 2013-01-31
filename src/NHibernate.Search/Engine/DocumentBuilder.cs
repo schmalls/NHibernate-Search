@@ -238,7 +238,7 @@ namespace NHibernate.Search.Engine
                 PopulateResult(builder.IdentifierName, builder.IdBridge, Attributes.Store.Yes, fields, result, document);
             }
 
-            ProcessFieldsForProjection(builder.rootClassMapping, fields, result, document);
+            ProcessFieldsForProjection(builder.rootClassMapping, fields, result, document, string.Empty);
 
             return result;
         }
@@ -455,13 +455,15 @@ namespace NHibernate.Search.Engine
         }
 
         private static void ProcessFieldsForProjection(
-            DocumentMapping mapping, String[] fields, Object[] result, Document document
+            DocumentMapping mapping, String[] fields, Object[] result, Document document, string prefix
         )
         {
             foreach (var field in mapping.Fields)
             {
                 PopulateResult(
-                    field,
+                    prefix + field.Name,
+                    field.Bridge,
+                    field.Store,
                     fields,
                     result,
                     document
@@ -471,7 +473,7 @@ namespace NHibernate.Search.Engine
             foreach (var embedded in mapping.Embedded)
             {
                 if (!embedded.IsCollection)
-                    ProcessFieldsForProjection(embedded.Class, fields, result, document);
+                    ProcessFieldsForProjection(embedded.Class, fields, result, document, prefix + embedded.Prefix);
             }
         }
 
